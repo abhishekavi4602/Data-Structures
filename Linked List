@@ -1,1 +1,92 @@
 
+Linked List:-
+
+Syntax:-
+          Struct node
+          {
+             int data;
+             Struct node *next;
+          }
+
+Advantages:-
+
+1.No Size Limitation
+2.Insertion/Deletion is easy
+
+Disadvantages:-
+
+1.Sequential Access(increases time complexity to search an element)
+2.Extra Pointer(requires extra space)
+
+
+Insertion:-
+
+1.Insert node at the start:-
+    
+   new_node->next=head;        // next is the pointer of new node
+    head = new_node;
+
+2.Insert node in the middle:-
+
+   while(p!=insert_position)
+   {
+      p=p->next;                   //iterating over nodes until we reach the desired node
+   }
+   store_next=p->next;
+   p->next=new_node;
+  new_node->next=store_next;
+
+3.Insert node at the end:-
+
+  while(p->next !=null)
+  { p=p->next }
+  p->next=new_node;
+ new_node->next=null;
+
+
+Deletion:-
+
+ node *delete( node *head , char d )       // d is the data to be deleted
+ {
+   node *p,*q;
+   q=head;
+   p=head->next; 
+       if(q->data == d)                   
+        {                               //deleting starting node
+           head=p;
+           delete(q);
+         }
+       else
+        {
+             while(p->data!=d)            
+              {
+                p=p->next;                 //iterating to reach the required node
+                q=q->next;
+              }
+            if(p->next==null)
+             {
+               q->next=null;               //deleting last node
+               delete(p);
+             }
+            else
+            {
+              q->next=p->next;            //deleting internal node
+              delete(p);
+             }
+        }
+    return head;
+  }
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
