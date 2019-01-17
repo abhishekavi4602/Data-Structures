@@ -8,25 +8,25 @@ Syntax:-
              Struct node *next;
           }
 
-Advantages:-
+(A)Advantages:-
 
 1.No Size Limitation
 2.Insertion/Deletion is easy
 
-Disadvantages:-
+(B)Disadvantages:-
 
 1.Sequential Access(increases time complexity to search an element)
 2.Extra Pointer(requires extra space)
 
 
-Insertion:-
+(C)Insertion:-
 
 1.Insert node at the start:-
     
    new_node->next=head;        // next is the pointer of new node
     head = new_node;
 
-2.Insert node in the middle:-
+2.Insert Internal node:-
 
    while(p!=insert_position)
    {
@@ -38,13 +38,13 @@ Insertion:-
 
 3.Insert node at the end:-
 
-  while(p->next !=null)
+  while(p->next!=null)
   { p=p->next }
   p->next=new_node;
  new_node->next=null;
 
 
-Deletion:-
+(D)Deletion:-
 
  node *delete( node *head , char d )       // d is the data to be deleted
  {
@@ -77,7 +77,64 @@ Deletion:-
     return head;
   }
              
+DOUBLY LINKED LIST:-
 
+(E)Insertion:-
+
+1.Insert node at the start
+
+   new_node->next=head;
+   head->prev=new_node;
+   new_node->prev=null;
+   head=new_node;
+   
+2.Insert Internal node
+
+  while(p!=insert_position)
+  { p=p->next;}
+  store_next=p->next;
+  p->next=new_node;
+  new_node->prev=p;
+  new_node->next=store_next;
+  store_next->prev=new_node;
+  
+3.Insert node at the end
+
+  while(p->next!=null)
+  {p=p->next;}
+  p->next=new_node;
+  new_node->prev=p;
+  new_node->next=null;
+  
+  
+(F)Deletion:-
+ 
+1.Deleting starting node
+
+  p=head;
+  head=head->next;
+  head->prev=null;
+  delete(p);
+  
+2.Delete internal node
+
+  while(p!=delete_position)
+  { p=p->next;}
+  store_next=p->next;
+  store_prev=p->prev;
+  store_prev->next=store_next;
+  store_next->prev=store_prev;
+  delete(p);
+  
+3.Delete Last node
+
+ while(p!=insert_position)
+ {p=p->next;}
+ store_prev=p->prev;
+ store_prev->next=null;
+ delete(p);
+
+  
 
 
 
